@@ -25,34 +25,12 @@ const RangeSelectUtil = props => {
   
   const BUTTONNAMES = ["Today", "Yesterday", "This Week", "Month", "Quarter", "Year"];
 
-  const STATEABBR = ["ALL","AA","AE","AK","AL","AP","AR","AS","AZ","CA","CO","CT","DC","DE","FL","GA",
-                     "GU","HI","IA", "ID","IL","IN","KS","KY","LA","MA","MD","ME","MI","MN","MO","MS",
-                     "MT","NC","ND","NE","NH","NJ","NM","NV","NY","OH","OK","OR","PA","PR","RI","SC",
-                     "SD","TN","TX","UT","VA","VI","VT","WA","WI","WV","WY"]
-
-  const STATENAMES = ["All States", "U.S. Armed Forces (Americas)", "U.S. Armed Forces (Europe)", 
-                      "Alaska", "Alabama", "U.S. Armed Forces (Pacific)", "Arkansas", 
-                      "American Samoa", "Arizona", "California", "Colorado", "Connecticut", 
-                      "District of Columbia", "Delaware", "Florida", "Georgia", "Guam", "Hawaii", 
-                      "Iowa", "Idaho", "Illinois", "Indiana", "Kansas", "Kentucky", "Louisiana", 
-                      "Massachusetts", "Maryland", "Maine", "Michigan", "Minnesota",
-                      "Missouri", "Mississippi", "Montana", "North Carolina", "North Dakota", "Nebraska",
-                      "New Hampshire", "New Jersey", "New Mexico", "Nevada", "New York", "Ohio", "Oklahoma",
-                      "Oregon", "Pennsylvania", "Puerto Rico", "Rhode Island", "South Carolina", "South Dakota",
-                      "Tennessee", "Texas", "Utah", "Virginia", "Virgin Islands", "Vermont", "Washington",
-                      "Wisconsin", "West Virginia", "Wyoming"]
-
-
   const setRange = (newStartDate, newEndDate) => {
     setInterval(({startDate: newStartDate,  endDate: newEndDate, rangeSelected: true}))
   }
 
   const isSelected = idx => {
     return idx == select;
-  }
-
-  const stateChangeHandler = event => {
-    setState(event.target.value)
   }
 
   const dateRangeClickHandler = event => {
@@ -117,22 +95,6 @@ const RangeSelectUtil = props => {
                 <span className={`${style['buttonText']} ${isSelected(idx) && style.spanSelected}`}>{item}</span>
               </button>
           )})}
-        </div>
-        <div className={style.stateNameContainer}>
-          <div className={style.selectorContainer}>
-            <div className={style.selectArrowContainer}>
-             &#8964;
-            </div>
-            <div className={style.selectDiv}>
-              <select value={state} onChange={stateChangeHandler}>
-                {STATEABBR.map((abbr,idx) => {return (
-                                           <option key={abbr} 
-                                                   value={abbr}> 
-                                                   {abbr} - {STATENAMES[idx]}
-                                           </option>)})}
-              </select>
-            </div>
-          </div>
         </div>
       </div>
     </React.Fragment>
