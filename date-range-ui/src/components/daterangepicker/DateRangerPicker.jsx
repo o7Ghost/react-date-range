@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState } from 'react';
 import Calendar from './../calendar/Calendar'
 import RangeSelectUtil from '../rangeselectutil/RangeSelectUtil'
 import style from './DateRangerPicker.module.css'
@@ -16,7 +16,6 @@ const DateRangePicker = props => {
 
   const [year, setYear] = useState(getYear(new Date()));
   const [month, setMonth] = useState(getMonth(new Date()));
-  const [state, setState] = useState("CA");
   const [select, setSelect] = useState(-1);
 
   return (
@@ -27,8 +26,6 @@ const DateRangePicker = props => {
                            setYear={setYear}
                            month={month}
                            setMonth={setMonth}
-                           state={state}
-                           setState={setState}
                            setPreview={setPreview}
                            select={select}
                            setSelect={setSelect}/>

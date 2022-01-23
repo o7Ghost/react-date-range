@@ -1,9 +1,8 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Dayecell from '../daycell/Daycell'
 import style from './Month.module.css';
 import {
     startOfMonth,
-    endOfMonth,
     getDaysInMonth,
     getDay,
     format
@@ -16,13 +15,7 @@ const Month = props => {
   const [days, setDays] = useState([]);
   const { dayInterval, setInterval, previewState, setPreview, setSelect} = props;
 
-  useEffect(() => {
-    initializeDates();
-  }, [props.month, props.year]);
-
-  console.log("month rendered");
-
-  const initializeDates = () => {
+  const initializeDates = useCallback(() => {
     let lastMonthDays;
     const currMonth = props.month
     const currYear = props.year
@@ -60,20 +53,23 @@ const Month = props => {
     //next month days
     for (let i = 1; i <= (42-currMonthDays-dayOfWeek+1); i++) {
       let day = i;
-      temp.push({currYear, currMonth, day, isCurrentM});
+
+      if (currMonth === 11) {
+        const nextY = currYear + 1;
+        temp.push({nextY, currMonth, day, isCurrentM});
+      }
+      else {
+        temp.push({currYear, currMonth, day, isCurrentM});
+      }
     }
 
     setDays(temp);
-  }
+  }, [props.month, props.year])
 
-  const getDate = () => {
-      return new Date();
-  }
-
-  const getMonthEnd = date => {
-    return endOfMonth(date);
-  }
-
+  useEffect(() => {
+    initializeDates();
+  }, [initializeDates]);
+  
   const getMonthStart = date => {
       return startOfMonth(date).getDate();
   }

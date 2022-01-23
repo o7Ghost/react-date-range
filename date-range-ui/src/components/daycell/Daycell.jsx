@@ -4,12 +4,11 @@ import {isToday,
         isBefore, 
         subDays, 
         addDays,
-        isEqual } from 'date-fns';
+        isEqual,
+        getYear} from 'date-fns';
 import style from './Daycell.module.css';
 
 const Daycell = props => {
-
-  console.log("cell rendered");
 
   const {previewState, setPreview, setSelect} = props;
 
@@ -19,7 +18,7 @@ const Daycell = props => {
 
   const dayDisabled = date => {
 
-    if (!date.isCurrentM) {
+    if (!date.isCurrentM || date.currYear > getYear(new Date())) {
       return true;
     }
 
