@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import style from './RangeSelectUtil.module.css'
 import {startOfDay, 
         endOfDay, 
@@ -17,8 +17,7 @@ import {startOfDay,
 const RangeSelectUtil = props => {
 
   const {setInterval, year, setYear, 
-         month, setMonth, state, 
-         setState, setPreview, select,
+         month, setMonth, setPreview, select,
          setSelect} = props
 
   // const [select, setSelect] = useState(-1);
@@ -67,9 +66,26 @@ const RangeSelectUtil = props => {
         setRange(startofMonth, endofMonth);
         break;
       case "4":
+
+        const isCurrYear = getYear(new Date());
         const startofQuarter = startOfMonth(new Date(year, month));
-        const getQuarter = subMonths(addQuarters(startofQuarter, 1), 1);
-        const endofQuarter = endOfMonth(getQuarter);
+        let getQuarter;
+        let  endofQuarter;
+
+        if (year == isCurrYear && month == 11) {
+          getQuarter = subMonths(addQuarters(startofQuarter, 1), 3);
+          endofQuarter = endOfMonth(getQuarter);
+        }
+        else if (year == isCurrYear && month == 10) {
+          getQuarter = subMonths(addQuarters(startofQuarter, 1), 2);
+          endofQuarter = endOfMonth(getQuarter);
+        }
+        else {
+          getQuarter = subMonths(addQuarters(startofQuarter, 1), 1);
+          endofQuarter = endOfMonth(getQuarter);
+        }
+        
+       
         setRange(startofQuarter, endofQuarter);
         break;
       case "5":
