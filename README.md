@@ -2,6 +2,9 @@
 
 my own interpretation of date range picker that's inspired from hypeserver.
 
+![](Images/DateRangeSelected.png)
+![](Images/DateRangeHover.png)
+
 # Getting Started
 
 ### Installation/Requirments
