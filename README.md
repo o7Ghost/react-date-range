@@ -1,6 +1,6 @@
 # Date Range Picker
 
-my own interpretation of date range picker that's inspired from hypeserver.
+An interpretation of date range picker that's heavily inspired from hypeserver.
 
 ![](Images/DateRangeSelected.png)
 ![](Images/DateRangeHover.png)
